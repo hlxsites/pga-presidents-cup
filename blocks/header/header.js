@@ -58,12 +58,12 @@ function setupUser(section) {
   const text = section.textContent.trim();
   if (isStored) {
     const user = JSON.parse(isStored);
-    section.innerHTML = `<button id="nav-user-button" class="nav-user-button" data-status="loading">
-        <img src="${user.thumbnailURL}" alt="User Profile Thumbnail"/></span><span>${text}</span>
+    section.innerHTML = `<button id="nav-user-button" class="nav-user-button" aria-labelledby="labelspan" data-status="loading">
+        <img src="${user.thumbnailURL}" alt="User Profile Thumbnail"/></span><span id="labelspan">${text}</span>
       </button>`;
   } else {
-    section.innerHTML = `<button id="nav-user-button" class="nav-user-button" data-status="loading">
-        ${icon.outerHTML}<span>${text}</span>
+    section.innerHTML = `<button id="nav-user-button" class="nav-user-button" aria-labelledby="labelspan" data-status="loading">
+        ${icon.outerHTML}<span id="labelspan">${text}</span>
       </button>`;
   }
   const button = section.querySelector('button');
