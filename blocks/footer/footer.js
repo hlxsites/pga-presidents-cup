@@ -11,10 +11,12 @@ import {
 function setupCookieChoices(section) {
   const cookieLink = section.querySelector('a[href*="onetrust-link"]');
   if (cookieLink) {
-    cookieLink.setAttribute('href', '#');
-    cookieLink.className = 'ot-sdk-show-settings';
-    cookieLink.id = 'ot-sdk-btn';
     cookieLink.parentNode.className = 'onetrust-link';
+    const btn = document.createElement('button');
+    btn.textContent = cookieLink.textContent;
+    btn.className = 'ot-sdk-show-settings';
+    btn.id = 'ot-sdk-btn';
+    cookieLink.replaceWith(btn);
   }
 }
 
