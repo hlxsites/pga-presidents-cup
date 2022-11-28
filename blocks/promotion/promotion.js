@@ -109,6 +109,7 @@ async function buildClock(block) {
   clock.className = 'rolex-frame';
   clock.innerHTML = `<iframe
       id="rolexFrame${placeholders.rolexId}"
+      title="rolex promotion"
       src="/blocks/promotion/rolex/rolex.frame.html?cities=rolex${placeholders.rolexId}"
       style="width:100%;height:90px;border:0;padding:0;overflow:hidden;scroll:none"
       scrolling="NO"
@@ -124,6 +125,7 @@ async function buildToggle(block) {
   toggle.className = 'rolex-frame';
   toggle.innerHTML = `<iframe
       id="rolexFrame1txbOyjg"
+      title="rolex promotion"
       class="rolex-frame-medium"
       data-src="/blocks/promotion/rolex/rolex.frameToggle.html?eventcity=${placeholders.city.split(' ').join('+')}&utc=${placeholders.eventOffset}&lang=${isFr() ? 'fr' : 'en'}"
       style="width:450px;height:100px;border:0;margin:0;padding:0;overflow:hidden;scroll:none"
@@ -134,6 +136,7 @@ async function buildToggle(block) {
     </iframe>
     <iframe
       id="rolexFrame1txbOyjg"
+      title="rolex promotion"
       class="rolex-frame-small"
       data-src="/blocks/promotion/rolex/rolex.frameToggleMobile.html?eventcity=${placeholders.city.split(' ').join('+')}&utc=${placeholders.eventOffset}&lang=${isFr() ? 'fr' : 'en'}"
       style="width:100%;height:58px;border:0px;margin:0px;padding:0px;overflow:hidden;background-color:rgb(0,96,57);"
