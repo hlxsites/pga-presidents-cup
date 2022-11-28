@@ -990,6 +990,30 @@ async function loadEager(doc) {
   }
 }
 
+export function getLanguage(locale) {
+  const langs = {
+    us: 'en-US',
+    fr: 'fr-FR',
+  };
+
+  let language = langs[locale];
+  if (!language) language = 'en-US';
+
+  return language;
+}
+
+export function getLocale(url) {
+  const locale = url.pathname.split('/')[1];
+  if (/^[a-z]{2}$/.test(locale)) {
+    return locale;
+  }
+  return 'us';
+}
+
+function setLang() {
+  document.documentElement.setAttribute('lang', getLanguage(getLocale(window.location)));
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -1005,6 +1029,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`);
+  setLang();
 
   doc.querySelectorAll('div:not([class]):not([id]):empty').forEach((empty) => empty.remove());
 }
