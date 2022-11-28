@@ -35,9 +35,12 @@ export default async function decorate(block) {
   /* change to ul, li */
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
+    // wrap main card element in an anchor
     const li = document.createElement('li');
-    li.innerHTML = row.innerHTML;
-    [...li.children].forEach((div) => {
+    li.innerHTML = '<a class="test-a">link</a>';
+
+    li.querySelector('a').innerHTML = row.innerHTML;
+    [...li.querySelector('a').children].forEach((div) => {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else {
         div.className = 'cards-card-body';
@@ -46,9 +49,9 @@ export default async function decorate(block) {
           bubble.className = 'cards-card-bubble';
           bubble.closest('p').className = 'cards-card-bubble-wrapper';
         }
+        const title = div.querySelector('h2');
         const subtitle = div.querySelector('h2 + p > strong');
         if (subtitle && subtitle.parentNode.textContent === subtitle.textContent) {
-          const title = div.querySelector('h2');
           const titleWrapper = document.createElement('div');
           titleWrapper.className = 'cards-card-title';
           titleWrapper.append(title.cloneNode(true), subtitle.parentNode);
@@ -66,6 +69,14 @@ export default async function decorate(block) {
           links.append(list);
           div.after(links);
         }
+        
+        // replace inner link with a button
+        li.querySelector('a').setAttribute('href', div.querySelector('a').href);
+        const btn = document.createElement('button');
+        btn.classList.add('button');
+        btn.classList.add('primary');
+        btn.textContent = "learn more";
+        div.querySelector('a').replaceWith(btn);
       }
     });
     ul.append(li);
