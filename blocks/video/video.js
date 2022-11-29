@@ -1,3 +1,5 @@
+import { fetchPlaceholders } from '../../scripts/scripts.js';
+
 function displayVideo(e) {
   const block = e.target.closest('.block');
   const video = block.querySelector('.video');
@@ -16,22 +18,19 @@ function closeVideo(e) {
   iframe.src = iframe.getAttribute('src').replace('&autoplay=1', '');
 }
 
-function buildDefaultVideo(id, inHero) {
+function buildDefaultVideo(id, inHero, title) {
   const videoUrl = 'https://players.brightcove.net/6082840763001/6QBtcb032_default/index.html?videoId=';
   return `<div class="video-iframe-wrapper">
-    <iframe loading="lazy" ${inHero ? 'data-' : ''}src='${videoUrl}${id}' allow="encrypted-media" title="Video Player" allowfullscreen></iframe>
+    <iframe loading="lazy" ${inHero ? 'data-' : ''}src='${videoUrl}${id}' allow="encrypted-media" title="${title}" allowfullscreen></iframe>
   </div>`;
 }
 
-function loadVideo(block) {
-  const status = block.getAttribute('data-video-status');
-  // eslint-disable-next-line no-useless-return
-  if (status === 'loaded') return;
-
+async function loadVideo(block) {
   const id = block.textContent.trim();
   if (id) {
+    const placeholders = await fetchPlaceholders();
     const inHero = [...block.classList].includes('video-hero');
-    const video = buildDefaultVideo(id, inHero);
+    const video = buildDefaultVideo(id, inHero, placeholders.videoPlayer);
     block.innerHTML = video;
 
     if (inHero) {
@@ -47,20 +46,16 @@ function loadVideo(block) {
       closeButton.addEventListener('click', closeVideo);
       block.prepend(closeButton);
     }
-
-    block.setAttribute('data-video-status', 'loaded');
-  }
-}
-
-function intersectHandler(entries) {
-  const entry = entries[0];
-  if (entry.isIntersecting) {
-    const block = entry.target;
-    loadVideo(block);
   }
 }
 
 export default function decorate(block) {
-  const observer = new IntersectionObserver(intersectHandler, { threshold: 0 });
+  const observer = new IntersectionObserver(async (entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      observer.disconnect();
+      loadVideo(block);
+    }
+  }, { threshold: 0 });
+
   observer.observe(block);
 }
