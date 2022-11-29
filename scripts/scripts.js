@@ -993,20 +993,9 @@ async function loadEager(doc) {
   }
 }
 
-export function getLocale(url) {
-  const locale = url.pathname.split('/')[1];
-  if (/^[a-z]{2}$/.test(locale)) {
-    return locale;
-  }
-  return 'us';
-}
-
 // simplified language detection as only en/fr are currently supported
 function setLang() {
-  let lang = 'en-US';
-  if (getLocale(window.location) === 'fr') {
-    lang = 'fr-FR';
-  }
+  const lang = isFr() ? 'fr-FR' : 'en-US';
   document.documentElement.setAttribute('lang', lang);
 }
 
