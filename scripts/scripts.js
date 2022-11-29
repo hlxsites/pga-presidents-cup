@@ -239,14 +239,17 @@ export async function wrapImgsInLinks(container) {
   const pictures = container.querySelectorAll('p picture');
   pictures.forEach((pic) => {
     const parent = pic.parentNode;
-    const link = parent.nextElementSibling.querySelector('a');
-    if (link && link.textContent.includes(link.getAttribute('href'))) {
-      link.parentElement.remove();
-      link.innerHTML = pic.outerHTML;
-      if (link.textContent.trim() === '' && !link.hasAttribute('aria-label')) {
-        link.setAttribute('aria-label', `${placeholders.linkTo} ${link.getAttribute('href')}`);
+    const sibling = parent.nextElementSibling;
+    if (sibling) {
+      const link = sibling.querySelector('a');
+      if (link && link.textContent.includes(link.getAttribute('href'))) {
+        link.parentElement.remove();
+        link.innerHTML = pic.outerHTML;
+        if (link.textContent.trim() === '' && !link.hasAttribute('aria-label')) {
+          link.setAttribute('aria-label', `${placeholders.linkTo} ${link.getAttribute('href')}`);
+        }
+        parent.replaceWith(link);
       }
-      parent.replaceWith(link);
     }
   });
 }
@@ -824,7 +827,7 @@ export function linkPicture(picture) {
     const a = nextSib.querySelector('a');
     if (a && a.textContent.startsWith('https://')) {
       a.innerHTML = '';
-      a.className = '';
+      a.removeAttribute('class');
       a.appendChild(picture);
     }
   }
