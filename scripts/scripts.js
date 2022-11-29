@@ -233,7 +233,9 @@ export function updateExternalLinks(container) {
  * Wraps images followed by links within a matching <a> tag.
  * @param {Element} container The container element
  */
-export function wrapImgsInLinks(container) {
+export async function wrapImgsInLinks(container) {
+  // eslint-disable-next-line no-use-before-define
+  const placeholders = await fetchPlaceholders();
   const pictures = container.querySelectorAll('p picture');
   pictures.forEach((pic) => {
     const parent = pic.parentNode;
@@ -242,7 +244,7 @@ export function wrapImgsInLinks(container) {
       link.parentElement.remove();
       link.innerHTML = pic.outerHTML;
       if (link.textContent.trim() === '' && !link.hasAttribute('aria-label')) {
-        link.setAttribute('aria-label', `link to ${link.getAttribute('href')}`);
+        link.setAttribute('aria-label', `${placeholders.linkTo} ${link.getAttribute('href')}`);
       }
       parent.replaceWith(link);
     }
