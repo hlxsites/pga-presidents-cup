@@ -990,18 +990,6 @@ async function loadEager(doc) {
   }
 }
 
-export function getLanguage(locale) {
-  const langs = {
-    us: 'en-US',
-    fr: 'fr-FR',
-  };
-
-  let language = langs[locale];
-  if (!language) language = 'en-US';
-
-  return language;
-}
-
 export function getLocale(url) {
   const locale = url.pathname.split('/')[1];
   if (/^[a-z]{2}$/.test(locale)) {
@@ -1010,8 +998,13 @@ export function getLocale(url) {
   return 'us';
 }
 
+// simplified language detection as only en/fr are currently supported
 function setLang() {
-  document.documentElement.setAttribute('lang', getLanguage(getLocale(window.location)));
+  let lang = 'en-US';
+  if (getLocale(window.location) === 'fr') {
+    lang = 'fr-FR';
+  }
+  document.documentElement.setAttribute('lang', lang);
 }
 
 /**
