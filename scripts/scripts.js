@@ -254,6 +254,7 @@ export function wrapImgsInLinks(container) {
  * @param {string} prefix
  */
 export async function fetchPlaceholders() {
+  // eslint-disable-next-line no-use-before-define
   const prefix = isFr() ? '/fr' : 'default';
   window.placeholders = window.placeholders || {};
   const loaded = window.placeholders[`${prefix}-loaded`];
@@ -837,11 +838,11 @@ export function decorateLinkedPictures(main) {
 }
 
 export function isFr() {
-  return window.location.pathname.startsWith('/fr/')
+  return window.location.pathname.startsWith('/fr/');
 }
 
 async function loadHeader(header) {
-  const config = isFr() ? [['<div>nav</div>', `<div>/fr/nav</div>`]] : '';
+  const config = isFr() ? [['<div>nav</div>', '<div>/fr/nav</div>']] : '';
   const headerBlock = buildBlock('header', config);
   header.append(headerBlock);
   decorateBlock(headerBlock);
@@ -849,7 +850,7 @@ async function loadHeader(header) {
 }
 
 async function loadFooter(footer) {
-  const config = isFr() ? [['<div>footer</div>', `<div>/fr/footer</div>`]] : '';
+  const config = isFr() ? [['<div>footer</div>', '<div>/fr/footer</div>']] : '';
   const footerBlock = buildBlock('footer', config);
   footer.append(footerBlock);
   decorateBlock(footerBlock);
