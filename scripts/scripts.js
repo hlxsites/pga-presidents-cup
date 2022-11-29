@@ -177,6 +177,14 @@ export function makeLinksRelative(main) {
           const resultHref = `${url.hostname}${url.pathname}${url.search}${url.hash}`.replace(hostPathMatch, '').replace('.html', '');
           a.href = resultHref.startsWith('/') ? resultHref : `/${resultHref}`;
         }
+        if (a.textContent.trim() === '' && !a.hasAttribute('aria-label')) {
+          let label = 'Link to an external resource';
+          if (hostMatch || hostPathMatch) {
+            label = `Link to ${a.href}`;
+          }
+          a.setAttribute('aria-label', label);
+        }
+
       } catch (e) {
         // something went wrong
         // eslint-disable-next-line no-console
