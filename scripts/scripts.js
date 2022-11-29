@@ -234,6 +234,9 @@ export function wrapImgsInLinks(container) {
     if (link && link.textContent.includes(link.getAttribute('href'))) {
       link.parentElement.remove();
       link.innerHTML = pic.outerHTML;
+      if (link.textContent.trim() === '' && !link.hasAttribute('aria-label')) {
+        link.setAttribute('aria-label', `link to ${link.getAttribute('href')}`);
+      }
       parent.replaceWith(link);
     }
   });
