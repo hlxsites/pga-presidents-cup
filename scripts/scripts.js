@@ -162,7 +162,9 @@ export function decorateIcons(element) {
  * Turns absolute links within the domain into relative links.
  * @param {Element} main The container element
  */
-export function makeLinksRelative(main) {
+export async function makeLinksRelative(main) {
+  // eslint-disable-next-line no-use-before-define
+  const placeholders = await fetchPlaceholders();
   // eslint-disable-next-line no-use-before-define
   const hosts = ['hlx.page', 'hlx.live', ...PRODUCTION_DOMAINS];
   main.querySelectorAll('a').forEach((a) => {
@@ -178,13 +180,10 @@ export function makeLinksRelative(main) {
           a.href = resultHref.startsWith('/') ? resultHref : `/${resultHref}`;
         }
         if (a.textContent.trim() === '' && !a.hasAttribute('aria-label')) {
-          let label = 'Link to an external resource';
-          if (hostMatch || hostPathMatch) {
-            label = `Link to ${a.href}`;
-          }
+          let label = placeholders.linkToExternal;
+          if (hostMatch || hostPathMatch) label = `${placeholders.linkTo} ${a.href}`;
           a.setAttribute('aria-label', label);
         }
-
       } catch (e) {
         // something went wrong
         // eslint-disable-next-line no-console
