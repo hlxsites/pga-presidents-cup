@@ -19,7 +19,7 @@ function closeVideo(e) {
 function buildDefaultVideo(id, inHero) {
   const videoUrl = 'https://players.brightcove.net/6082840763001/6QBtcb032_default/index.html?videoId=';
   return `<div class="video-iframe-wrapper">
-    <iframe loading="lazy" ${inHero ? 'data-' : ''}src='${videoUrl}${id}' allow="encrypted-media" allowfullscreen></iframe>
+    <iframe loading="lazy" ${inHero ? 'data-' : ''}src='${videoUrl}${id}' allow="encrypted-media" title="Video Player" allowfullscreen></iframe>
   </div>`;
 }
 
