@@ -162,7 +162,9 @@ export function decorateIcons(element) {
  * Turns absolute links within the domain into relative links.
  * @param {Element} main The container element
  */
-export function makeLinksRelative(main) {
+export async function makeLinksRelative(main) {
+  // eslint-disable-next-line no-use-before-define
+  const placeholders = await fetchPlaceholders();
   // eslint-disable-next-line no-use-before-define
   const hosts = ['hlx.page', 'hlx.live', ...PRODUCTION_DOMAINS];
   main.querySelectorAll('a').forEach((a) => {
@@ -176,6 +178,11 @@ export function makeLinksRelative(main) {
         } else if (hostPathMatch) {
           const resultHref = `${url.hostname}${url.pathname}${url.search}${url.hash}`.replace(hostPathMatch, '').replace('.html', '');
           a.href = resultHref.startsWith('/') ? resultHref : `/${resultHref}`;
+        }
+        if (a.textContent.trim() === '' && !a.hasAttribute('aria-label')) {
+          let label = placeholders.linkToExternal;
+          if (hostMatch || hostPathMatch) label = `${placeholders.linkTo} ${a.href}`;
+          a.setAttribute('aria-label', label);
         }
       } catch (e) {
         // something went wrong
@@ -226,15 +233,23 @@ export function updateExternalLinks(container) {
  * Wraps images followed by links within a matching <a> tag.
  * @param {Element} container The container element
  */
-export function wrapImgsInLinks(container) {
+export async function wrapImgsInLinks(container) {
+  // eslint-disable-next-line no-use-before-define
+  const placeholders = await fetchPlaceholders();
   const pictures = container.querySelectorAll('p picture');
   pictures.forEach((pic) => {
     const parent = pic.parentNode;
-    const link = parent.nextElementSibling.querySelector('a');
-    if (link && link.textContent.includes(link.getAttribute('href'))) {
-      link.parentElement.remove();
-      link.innerHTML = pic.outerHTML;
-      parent.replaceWith(link);
+    const sibling = parent.nextElementSibling;
+    if (sibling) {
+      const link = sibling.querySelector('a');
+      if (link && link.textContent.includes(link.getAttribute('href'))) {
+        link.parentElement.remove();
+        link.innerHTML = pic.outerHTML;
+        if (link.textContent.trim() === '' && !link.hasAttribute('aria-label')) {
+          link.setAttribute('aria-label', `${placeholders.linkTo} ${link.getAttribute('href')}`);
+        }
+        parent.replaceWith(link);
+      }
     }
   });
 }
@@ -244,6 +259,7 @@ export function wrapImgsInLinks(container) {
  * @param {string} prefix
  */
 export async function fetchPlaceholders() {
+  // eslint-disable-next-line no-use-before-define
   const prefix = isFr() ? '/fr' : 'default';
   window.placeholders = window.placeholders || {};
   const loaded = window.placeholders[`${prefix}-loaded`];
@@ -811,7 +827,7 @@ export function linkPicture(picture) {
     const a = nextSib.querySelector('a');
     if (a && a.textContent.startsWith('https://')) {
       a.innerHTML = '';
-      a.className = '';
+      a.removeAttribute('class');
       a.appendChild(picture);
     }
   }
@@ -990,6 +1006,12 @@ async function loadEager(doc) {
   }
 }
 
+// simplified language detection as only en/fr are currently supported
+function setLang() {
+  const lang = isFr() ? 'fr-FR' : 'en-US';
+  document.documentElement.setAttribute('lang', lang);
+}
+
 /**
  * loads everything that doesn't need to be delayed.
  */
@@ -1005,6 +1027,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.ico`);
+  setLang();
 
   doc.querySelectorAll('div:not([class]):not([id]):empty').forEach((empty) => empty.remove());
 }

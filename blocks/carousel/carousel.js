@@ -275,6 +275,7 @@ export default async function decorate(block) {
         }
         /* buttons */
         const button = document.createElement('button');
+        button.setAttribute('title', `carousel slide ${i+1}`);
         if (!i) {
           button.classList.add('selected');
           buttons.setAttribute('aria-hidden', true);
