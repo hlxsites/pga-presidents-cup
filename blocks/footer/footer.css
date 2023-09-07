@@ -2,8 +2,8 @@ footer {
   --footer-color: var(--color-gray-78);
   --footer-text-color: var(--color-white);
   --footer-ribbon-color: var(--color-black);
-  --footer-ribbon-text-color: var(--color-gray);
-  --footer-border-color: var(--color-gray-light);
+  --footer-ribbon-text-color: var(--color-white);
+  --footer-border-color: var(--color-white);
 
   font-size: var(--body-font-size-xs);
   text-align: center;
@@ -84,15 +84,25 @@ footer .footer .footer-partners img {
   max-height: 132px;
 }
 
+#global-partners {
+  color: var(--color-white);
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  font-size: 2em;
+  margin: 1.5em;
+}
+
 @media (min-width: 700px) {
   footer .footer .footer-partners > div {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
   }
 
   footer .footer .footer-partners .footer-partner {
-    flex-basis: calc(100% / 3);
+    display: flex;
+    align-items: end;
+    overflow: hidden;
+    padding: 1em
   }
 
   footer .footer .footer-partners .footer-partner:not(:first-child) {
