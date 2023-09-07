@@ -60,7 +60,7 @@ async function setupPartners(section, ph) {
       partner.append(link);
       wrapper.append(partner);
     });
-    section.append(wrapper);
+    section.prepend(wrapper);
   }
 }
 
