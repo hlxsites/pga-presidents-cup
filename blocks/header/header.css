@@ -479,7 +479,7 @@ header nav[aria-expanded=true] .nav-sections .nav-drop[aria-expanded="false"] ul
   }
 
   header nav .nav-sections .nav-drop span::after {
-    top: 23px;
+    top: 27px;
     width: 8px;
     height: 8px;
     transform: rotate(45deg);
