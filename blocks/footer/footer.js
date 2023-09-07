@@ -81,6 +81,7 @@ export default async function decorate(block) {
     // decorate footer DOM
     const footer = document.createElement('div');
     footer.innerHTML = html;
+    console.log(footer.innerHTML);
 
     let hasPartners = footer.children.length > 4;
     let classes = ['partners', 'nav', 'links', 'social', 'copyright'];
@@ -105,9 +106,9 @@ export default async function decorate(block) {
     const wrapper = document.createElement('div');
 
     if (hasPartners) {
-      wrapper.append(footer.querySelector('.footer-partners'), footer.querySelector('.footer-nav'));
+      wrapper.append(footer.querySelector('.footer-partners'));
     } else {
-      wrapper.append(footer.querySelector('.footer-nav'));
+      // wrapper.append(footer.querySelector('.footer-nav'));
     }
 
     ribbon.append(wrapper);

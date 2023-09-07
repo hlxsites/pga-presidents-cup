@@ -157,6 +157,9 @@ export default async function decorate(block) {
       const section = nav.children[i];
       if (section) {
         section.classList.add(`nav-${c}`);
+        if (c === "social") {
+          section.remove();
+        }
       }
     });
 
@@ -237,26 +240,26 @@ export default async function decorate(block) {
     decorateIcons(scores);
     data.append(scores);
 
-    if (placeholders.course) data.insertAdjacentHTML('beforeend', `<div class="status-bar-course"><p>${placeholders.course}</p></div>`);
-    if (placeholders.dates) data.insertAdjacentHTML('beforeend', `<div class="status-bar-dates"><p>${placeholders.dates}</p></div>`);
-    // setup countdown
-    if (placeholders.countdown) {
-      window.placeholders.countdown = new Date(placeholders.countdown);
-      const timeBetween = findTimeBetween(window.placeholders.countdown);
-      if (timeBetween > 0) { // if event occurs in the future
-        const countdownData = parseCountdown(timeBetween);
-        const countdown = `<div class="status-bar-countdown">
-          <p>
-            <span id="countdown-days">${countdownData.days}</span> days : 
-            <span id="countdown-hours">${countdownData.hours}</span> hours : 
-            <span id="countdown-minutes">${countdownData.minutes}</span> minutes
-          </p>
-        </div>`;
-        data.insertAdjacentHTML('beforeend', countdown);
-        // update countdown every minute
-        const intervalId = setInterval(() => updateCountdown(intervalId), 6 * 1000);
-      }
-    }
+    // if (placeholders.course) data.insertAdjacentHTML('beforeend', `<div class="status-bar-course"><p>${placeholders.course}</p></div>`);
+    // if (placeholders.dates) data.insertAdjacentHTML('beforeend', `<div class="status-bar-dates"><p>${placeholders.dates}</p></div>`);
+    // // setup countdown
+    // if (placeholders.countdown) {
+    //   window.placeholders.countdown = new Date(placeholders.countdown);
+    //   const timeBetween = findTimeBetween(window.placeholders.countdown);
+    //   if (timeBetween > 0) { // if event occurs in the future
+    //     const countdownData = parseCountdown(timeBetween);
+    //     const countdown = `<div class="status-bar-countdown">
+    //       <p>
+    //         <span id="countdown-days">${countdownData.days}</span> days :
+    //         <span id="countdown-hours">${countdownData.hours}</span> hours :
+    //         <span id="countdown-minutes">${countdownData.minutes}</span> minutes
+    //       </p>
+    //     </div>`;
+    //     data.insertAdjacentHTML('beforeend', countdown);
+    //     // update countdown every minute
+    //     const intervalId = setInterval(() => updateCountdown(intervalId), 6 * 1000);
+    //   }
+    // }
     // check for stored weather
     // eslint-disable-next-line max-len
     /* const isWeatherStored = sessionStorage.getItem(`${placeholders.tourCode}${placeholders.tournamentId}Weather`);
