@@ -493,7 +493,7 @@ main .leaderboard.full .leaderboard-round caption h2 {
   font-family: var(--body-font-family);
   font-size: var(--heading-font-size-xs);
   font-weight: bold;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 main .leaderboard.full .leaderboard-round caption p {

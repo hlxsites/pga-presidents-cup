@@ -64,7 +64,7 @@ main .columns .icon {
 
 main .columns h2 {
   margin-top: 0;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 main .columns .columns-column-title {

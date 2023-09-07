@@ -9,7 +9,7 @@ main .section.player-feature-container {
 main .player-feature-wrapper {
   box-sizing: border-box;
   position: relative;
-  max-width: 1400px;
+  /*max-width: 1400px;*/
   margin: auto;
   padding-top: 290px;
   background: linear-gradient(#fff0 400px, var(--background-color) 630px);

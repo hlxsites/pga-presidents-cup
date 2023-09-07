@@ -31,7 +31,7 @@ main .cards .cards-card-links {
 }
 
 main .cards h2 {
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 @media (min-width: 700px) {

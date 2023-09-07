@@ -10,7 +10,7 @@ main .course-container {
 
 main .course-wrapper {
   position: relative;
-  max-width: 1400px;
+  /*max-width: 1400px;*/
 }
 
 main .course-buttons {
