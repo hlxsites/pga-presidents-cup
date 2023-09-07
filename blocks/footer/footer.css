@@ -92,6 +92,22 @@ footer .footer .footer-partners img {
   margin: 1.5em;
 }
 
+@media (max-width: 699px) {
+  footer .footer .footer-partners > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  footer .footer .footer-partners .footer-partner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 3em
+  }
+}
+
 @media (min-width: 700px) {
   footer .footer .footer-partners > div {
     display: flex;
