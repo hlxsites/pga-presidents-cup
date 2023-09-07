@@ -208,7 +208,7 @@ export default async function decorate(block) {
     // build status bar
     const statusBar = document.createElement('div');
     statusBar.className = 'status-bar';
-    block.parentNode.append(statusBar);
+    // block.parentNode.append(statusBar);
     const data = document.createElement('div');
     data.className = 'status-bar-data';
     const scores = document.createElement('div');
