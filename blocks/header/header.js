@@ -68,7 +68,8 @@ async function setupPartners(section, ph) {
       setInterval(() => {
         displayNextPartner(partners);
       }, 5000);
-      section.append(partners);
+      // temporarily remove sponsor viewer
+      // section.append(partners);
     }
   }
 }

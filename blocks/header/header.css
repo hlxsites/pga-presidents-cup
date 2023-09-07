@@ -2,7 +2,7 @@
 
 /* header and nav layout */
 header {
-  --nav-color: var(--color-gray-78);
+  --nav-color: var(--color-black);
   --nav-secondary-color: var(--color-gray-6b);
   --nav-hover-color: var(--color-gray-6b);
   --nav-border-color: var(--color-gray-light);
@@ -145,7 +145,7 @@ header nav[aria-expanded=true] .nav-brand a {
     align-items: center;
     justify-content: center;
     align-self: start;
-    min-height: 120px;
+    /*min-height: 120px;*/
     box-shadow: 0 0 10px 5px rgb(0 0 0 / 30%);
   }
 
