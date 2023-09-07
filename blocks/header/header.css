@@ -181,7 +181,7 @@ header nav .nav-partners {
   padding: 0 10px;
   font-size: 11px;
   text-align: center;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 header nav .nav-partners-title {
@@ -378,7 +378,7 @@ header nav .nav-sections {
   grid-area: sections;
   display: none;
   margin-top: 10px;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 header nav[aria-expanded=true] .nav-sections {
@@ -613,7 +613,7 @@ header nav .nav-user {
 
 header nav[aria-expanded=true] .nav-user {
   display: block;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
 }
 
 header nav .nav-user button {
@@ -732,7 +732,7 @@ header .status-bar {
   font-size: var(--body-font-size-xs);
   font-weight: lighter;
   text-align: center;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   z-index: 1;
 }
 
