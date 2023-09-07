@@ -107,8 +107,6 @@ export default async function decorate(block) {
 
     if (hasPartners) {
       wrapper.append(footer.querySelector('.footer-partners'));
-    } else {
-      // wrapper.append(footer.querySelector('.footer-nav'));
     }
 
     ribbon.append(wrapper);
@@ -116,6 +114,8 @@ export default async function decorate(block) {
     setupCookieChoices(footer.querySelector('.footer-links'));
     setupSocialButtons(footer.querySelector('.footer-social'));
 
+    //temporarily remove footer nav
+    footer.querySelector('.footer-nav').remove()
     block.append(footer);
     block.parentNode.prepend(ribbon);
     wrapImgsInLinks(block);
