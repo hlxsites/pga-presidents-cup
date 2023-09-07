@@ -31,6 +31,7 @@
   --color-gray-6f: #6F6F73;
   --color-gray-6b: #6B6B6D;
   --color-gray-64: #646467;
+  --color-gray-40: #40404050;
   --color-gray-dark: #4d4d4d;
   --color-gray: var(--color-gray-85);
   --color-gray-light: #ccc;
@@ -41,7 +42,7 @@
 
   /* colors assignments */
   --link-color: var(--color-gray-78);
-  --link-hover-color: var(--color-gray);
+  --link-hover-color: var(--color-gray-40);
   --background-color: var(--color-black);
   --overlay-background-color: var(--color-black);
   --overlay-text-color: var(--color-white);
@@ -183,9 +184,9 @@ a.button:any-link, button {
   max-width: 100%;
   margin: 16px 0;
   border: 1px solid white;
-  padding: 5px 16px;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  padding: 8px 32px;
+  background-color: transparent;
+  color: var(--color-white);
   font-family: var(--font-family-body);
   font-style: normal;
   font-weight: normal;
@@ -325,7 +326,7 @@ main .section > .default-content-wrapper h3,
 main .section > .default-content-wrapper h4,
 main .section > .default-content-wrapper h5,
 main .section > .default-content-wrapper h6 {
-  color: var(--color-gray);
+  color: var(--color-white);
   text-align: center;
   /*text-transform: uppercase;*/
 }
