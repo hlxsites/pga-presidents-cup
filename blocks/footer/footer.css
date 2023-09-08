@@ -116,7 +116,7 @@ footer .footer .footer-partners img {
   footer .footer .footer-partners .footer-partner {
     display: flex;
     align-items: end;
-    padding: 1em
+    padding: 2em
   }
 
   footer .footer .footer-partners .footer-partner:not(:first-child) {

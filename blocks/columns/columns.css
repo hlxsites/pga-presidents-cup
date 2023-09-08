@@ -6,7 +6,7 @@ main .columns > div {
   display: flex;
   flex-direction: column;
   margin: 32px 0;
-  background-color: var(--highlight-background-color);
+  background-color: var(--color-gray-90);
 }
 
 main .columns > div > div:not(.columns-contains-image) {
