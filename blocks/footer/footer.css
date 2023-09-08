@@ -36,7 +36,7 @@ footer .footer h4 {
 
 footer .footer a {
   color: var(--footer-text-color);
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   cursor: pointer;
 }
 
@@ -180,7 +180,7 @@ footer .footer .footer-links li {
     grid-template-columns: 65px 1fr 65px;
     align-items: center;
     gap: 0 10px;
-    font-size: var(--body-font-size-xs);
+    font-size: var(--body-font-size-xl);
   }
 
   footer .footer .footer-links ul {
