@@ -81,7 +81,6 @@ export default async function decorate(block) {
     // decorate footer DOM
     const footer = document.createElement('div');
     footer.innerHTML = html;
-    console.log(footer.innerHTML);
 
     let hasPartners = footer.children.length > 4;
     let classes = ['partners', 'nav', 'links', 'social', 'copyright'];

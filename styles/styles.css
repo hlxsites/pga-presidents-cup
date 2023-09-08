@@ -197,6 +197,7 @@ a.button:any-link, button {
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 10px;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
